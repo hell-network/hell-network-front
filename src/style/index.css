@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Noto + Sans + KR');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+.nanummyeongjo * {
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+@font-face {
+  font-family: 'NanumMyeongjo';
+  src: url('/fonts/NanumMyeongjo.ttf');
+}
+
+@font-face {
+  font-family: 'NanumBrushScript-Regular';
+  src: url('/fonts/NanumBrushScript-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url('/fonts/Sofia-Pro-Regular.woff') format('woff');
+  /* Add more font formats if necessary */
+  /* Add additional font properties as desired, such as font-weight and font-style */
+}
