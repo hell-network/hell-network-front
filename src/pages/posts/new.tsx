@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import dynamic from 'next/dynamic'
-import { Box, Button, ButtonGroup } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Select } from '@chakra-ui/react'
 import { useRegisterPost } from '@hooks/queries/post/useRegisterPost'
 
 const NoSsrEditor = dynamic(() => import('components/TuiEditor'), {
@@ -72,6 +72,11 @@ const Page = () => {
         >
           <div className="mx-2 my-4 p-2 md:mx-8 lg:mx-8">
             <div className="relative">
+              <Select placeholder="Select option">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </Select>
               <label htmlFor="name" className="text-sm leading-7 text-gray-600">
                 제목 <span className="ml-2 text-xs text-red-500">{errors.title?.message}</span>
               </label>

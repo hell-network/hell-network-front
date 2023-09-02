@@ -16,6 +16,7 @@ import 'style/custom-react-toastify.css'
 import 'style/index.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import theme from '../theme'
+import SearchModal from '@components/base/SearchModal'
 
 function GlobalHooks() {
   return null
@@ -54,6 +55,7 @@ function MyApp(props: AppProps) {
             <ChakraProvider theme={theme}>
               <GlobalHooks />
               <ToastProvider>
+                {/* <SearchModal /> */}
                 <AppLayout {...props} />
               </ToastProvider>
             </ChakraProvider>

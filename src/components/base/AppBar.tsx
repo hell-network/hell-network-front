@@ -1,7 +1,8 @@
-import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon, SearchIcon } from '@chakra-ui/icons'
 import { IconButton } from '@chakra-ui/react'
 import { useIsMenuOpen } from '@store/navi/hooks'
+import SafeLink from '@components/SafeLink'
 
 // position: relative;
 // max-width: 76.8rem;
@@ -16,6 +17,7 @@ import { useIsMenuOpen } from '@store/navi/hooks'
 // height: 4.8rem;
 // padding: 0 1.2rem;
 const AppBar = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const { handleSetMenuOnOffControl, isMenuOpen } = useIsMenuOpen()
   return (
     <Box
@@ -46,12 +48,22 @@ const AppBar = () => {
               <Flex justifyContent={'center'} alignItems={'center'}>
                 <HamburgerIcon marginRight={'15px'} onClick={() => handleSetMenuOnOffControl(true)} />
               </Flex>
-              <img src="/images/home/main.png" width={'24px'} height={'24px'} alt="" style={{ marginRight: '16px' }} />
-              <Text fontWeight={'bold'} fontSize={'16px'} lineHeight={'24px'}>
-                Hell.net
-              </Text>
+              <SafeLink href="/">
+                <img
+                  src="/images/home/main.png"
+                  width={'24px'}
+                  height={'24px'}
+                  alt=""
+                  style={{ marginRight: '16px' }}
+                />
+              </SafeLink>
+              <SafeLink href="/">
+                <Text fontWeight={'bold'} fontSize={'16px'} lineHeight={'24px'}>
+                  Hell.net
+                </Text>
+              </SafeLink>
               <Flex margin="auto" paddingLeft={'24px'} paddingRight={'8px'}>
-                <SearchIcon height={'32px'} />
+                <SearchIcon height={'32px'} onClick={onOpen} />
               </Flex>
             </Flex>
           </Flex>

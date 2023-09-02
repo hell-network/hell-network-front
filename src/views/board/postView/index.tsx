@@ -10,13 +10,13 @@ const TuiViewer = dynamic(() => import('@components/TuiViewer'), {
 })
 
 type PostViewProps = {
-  id: number
+  id: string
 }
 const PostView = ({ id }: PostViewProps) => {
-  const { data: postData, isLoading } = useGetPostsById(id)
+  const { data: postData, isLoading } = useGetPostsById(parseInt(id))
   return (
     <Box>
-      <Heading textAlign={'center'} fontFamily="NanumMyeongjo">
+      <Heading textAlign={'center'} fontFamily="Nanum Myeongjo">
         {postData?.result?.title}
       </Heading>
       <Box width={'100%'} height="300px" position={'relative'}>

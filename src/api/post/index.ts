@@ -10,11 +10,11 @@ export const registerPost = async (title: string, content: string, boardId: numb
   return response.data // 데이터 값을 바로 반환하도록 처리합니다.
 }
 
-export async function getPosts(id: number, boardId: number) {
+export async function getPosts(boardId: number, id: number) {
   const response = await axiosInstance.get<GetPostsResponse>('/v1/post/getPosts', {
     params: {
-      id,
       boardId,
+      id,
     },
   })
   return response.data // 데이터 값을 바로 반환하도록 처리합니다.

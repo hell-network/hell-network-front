@@ -1,19 +1,9 @@
-import { useGetPosts } from '@hooks/queries/post/useGetPosts'
-import { useRouter } from 'next/router'
-import PostsListItem from '@views/board/PostsListItem'
-import { Flex } from '@chakra-ui/react'
+import Board from '@views/board'
+import useGetBoardId from '@hooks/useGetBoardId'
 function BoardPage() {
-  const router = useRouter()
-  const { board: boardSlug } = router.query
-  const posts = useGetPosts(1)
+  const boardId = useGetBoardId()
 
-  return (
-    <Flex flexDirection="column" gap="8px" padding="1rem">
-      {posts?.data?.result.map((post) => (
-        <PostsListItem post={post} boardSlug={boardSlug as string} />
-      ))}
-    </Flex>
-  )
+  return <Board boardId={boardId} />
 }
 
 export default BoardPage

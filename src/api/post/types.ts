@@ -6,7 +6,11 @@ export type GetPostByIdResponse = Omit<IDefaultResponse, 'result'> & {
 }
 
 export type GetPostsResponse = Omit<IDefaultResponse, 'result'> & {
-  result: Post[]
+  result: {
+    posts: Post[]
+    lastId: number
+    isLast: boolean
+  }
 }
 
 export interface Post {

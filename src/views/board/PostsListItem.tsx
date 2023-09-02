@@ -10,6 +10,7 @@ type PostsListItemProps = {
   boardSlug: string
 }
 const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
+  console.log('post = ', post?.slug)
   return (
     <Box padding="8px" backgroundColor={'blackAlpha.300'} borderRadius={'4px'}>
       <SafeLink href={`/${boardSlug}/${post?.postId}/${truncateAfterLastDash(post?.slug)}`}>

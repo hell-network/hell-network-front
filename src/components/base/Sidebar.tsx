@@ -2,10 +2,11 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons'
 import { useBoard, useIsMenuOpen } from '@store/navi/hooks'
 import { useGetBoard } from '@hooks/queries/board/useGetBoard'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import SafeLink from '@components/SafeLink'
 import { Board } from '@api/board/types'
+import useGetBoardId from '@hooks/useGetBoardId'
 
 type SidebarItemProps = {
   board: Board
@@ -20,6 +21,7 @@ const SidebarItem = ({ board, isActive }: SidebarItemProps) => {
         backgroundColor={isActive ? 'gray.800' : 'transparent'}
         cursor="pointer"
         height={'36px'}
+        padding={'10px'}
         _hover={{ backgroundColor: 'gray.700' }}
       >
         <Text fontWeight={isActive ? 'bold' : 'normal'} lineHeight={'22px'}>
@@ -31,20 +33,21 @@ const SidebarItem = ({ board, isActive }: SidebarItemProps) => {
 }
 
 const Sidebar = () => {
-  const { handleSetMenuOnOff, isMenuOpen } = useIsMenuOpen()
+  const router = useRouter()
+  const { handleSetMenuOnOff, handleSetMenuOnOffControl, isMenuOpen } = useIsMenuOpen()
   const { data: boardData } = useGetBoard()
   const { handleSetBoard } = useBoard()
-  const router = useRouter()
-  const { board: boardSlug } = router?.query
+  const findBoardId = useGetBoardId()
 
   useEffect(() => {
     if (boardData?.result?.length === 0) return
     handleSetBoard(boardData?.result)
   }, [boardData, handleSetBoard])
 
-  const findBoardId = useCallback(() => {
-    return boardData?.result?.find((board) => board?.slug === (boardSlug as string))?.boardId
-  }, [boardData?.result, boardSlug])
+  useEffect(() => {
+    // 라우트가 변경될 때마다 사이드바를 닫습니다.
+    handleSetMenuOnOffControl(false)
+  }, [handleSetMenuOnOffControl, router.asPath])
 
   return (
     <Box
@@ -64,7 +67,7 @@ const Sidebar = () => {
           <CloseIcon onClick={handleSetMenuOnOff} />
         </Flex>
         {boardData?.result?.map((board) => (
-          <SidebarItem board={board} isActive={findBoardId() === board.boardId} />
+          <SidebarItem board={board} isActive={findBoardId === board.boardId} key={`sidebar-${board?.boardId}`} />
         ))}
       </Box>
     </Box>
