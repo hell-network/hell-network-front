@@ -27,9 +27,11 @@ const Page = () => {
   const handleSetTitle = useCallback((e) => {
     setTitle(e.target.value)
   }, [])
+
   const handleGoBack = useCallback(() => {
     router.back()
   }, [router])
+
   const { mutatePost } = useRegisterPost()
 
   return (

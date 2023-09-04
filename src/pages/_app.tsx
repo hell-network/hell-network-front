@@ -1,22 +1,26 @@
 import Script from 'next/script'
-import { Hydrate, QueryClientProvider } from 'react-query'
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import useBaseQueryClient from 'hooks/queries/useBaseQueryClient'
 import store from 'store'
 import AppLayout from 'components/AppLayout'
-
 import { ToastProvider } from '@context/Toast'
 import { Provider } from 'react-redux'
+import { ChakraProvider } from '@chakra-ui/react'
+import theme from '../theme'
+import useScrollRestoration from '@hooks/useScrollRestoration'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { ChakraProvider } from '@chakra-ui/react'
 import 'style/custom-react-toastify.css'
 import 'style/index.css'
 import 'react-loading-skeleton/dist/skeleton.css'
-import theme from '../theme'
-import SearchModal from '@components/base/SearchModal'
+import '@toast-ui/editor/dist/toastui-editor.css'
+import 'tui-color-picker/dist/tui-color-picker.css'
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css'
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css'
+import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css'
 
 function GlobalHooks() {
   return null
@@ -31,6 +35,8 @@ function MyApp(props: AppProps) {
   const { pageProps } = props
   const queryClient = useBaseQueryClient()
 
+  useScrollRestoration()
+  //const queryClient = new QueryClient()
   return (
     <>
       <Head>
@@ -41,6 +47,7 @@ function MyApp(props: AppProps) {
         <meta property="og:title" content={pageProps.ogTitle ?? ''} />
         <meta property="og:image" content={pageProps.ogImage ?? ''} />
         <meta property="og:description" content={pageProps.ogDescription ?? ''} />
+
         {/* <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
         <meta name="twitter:i mage" content="" />
@@ -55,7 +62,6 @@ function MyApp(props: AppProps) {
             <ChakraProvider theme={theme}>
               <GlobalHooks />
               <ToastProvider>
-                {/* <SearchModal /> */}
                 <AppLayout {...props} />
               </ToastProvider>
             </ChakraProvider>

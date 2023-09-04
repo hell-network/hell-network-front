@@ -63,7 +63,7 @@ const Sidebar = () => {
       backgroundColor="rgb(24, 28, 31)"
     >
       <Box as="ul">
-        <Flex padding={'15px'}>
+        <Flex padding={'15px'} cursor={'pointer'}>
           <CloseIcon onClick={handleSetMenuOnOff} />
         </Flex>
         {boardData?.result?.map((board) => (

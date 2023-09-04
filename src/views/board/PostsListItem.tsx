@@ -4,6 +4,7 @@ import { Post } from '@api/post/types'
 import moment from 'moment'
 import SafeLink from '@components/SafeLink'
 import { truncateAfterLastDash } from '@utils/convert'
+import React from 'react'
 
 type PostsListItemProps = {
   post: Post
@@ -12,7 +13,7 @@ type PostsListItemProps = {
 const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
   console.log('post = ', post?.slug)
   return (
-    <Box padding="8px" backgroundColor={'blackAlpha.300'} borderRadius={'4px'}>
+    <Box padding="8px" borderRadius={'4px'} borderBottomColor={'rgba(43,46,57,1.00)'} borderBottomWidth="1px">
       <SafeLink href={`/${boardSlug}/${post?.postId}/${truncateAfterLastDash(post?.slug)}`}>
         <Flex flexDirection={'column'}>
           <Flex justifyContent={'space-between'}>
@@ -21,9 +22,8 @@ const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
                 {post?.title}
               </Text>
               <Text
-              // isTruncated
-
-              //maxWidth="300px" // Adjust as needed
+                isTruncated
+                maxWidth="300px" // Adjust as needed
               >
                 {post?.content}
               </Text>
@@ -41,7 +41,7 @@ const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
           <Flex justifyContent={'right'}>
             <Flex>
               <Text paddingRight={'4px'} fontSize={'12px'} color="gray.400">
-                -익명
+                익명
               </Text>
               <Text paddingRight={'4px'} fontSize={'12px'} color="gray.400">
                 {moment(post?.datePosted).format('YYYY-MM-DD')}
@@ -50,10 +50,17 @@ const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
                 32 comment
               </Text>
             </Flex>
+          </Flex>{' '}
+          <Flex paddingTop={'5px'}>
+            <Flex as="ul" gap="1rem" listStyleType={'none'}>
+              <Box as="li">#실화</Box>
+              <Box as="li">#사건</Box>
+              <Box as="li">#트랜드</Box>
+            </Flex>
           </Flex>
         </Flex>
       </SafeLink>
     </Box>
   )
 }
-export default postsListItem
+export default React.memo(postsListItem)
