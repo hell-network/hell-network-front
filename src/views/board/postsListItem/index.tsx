@@ -6,6 +6,7 @@ import SafeLink from '@components/SafeLink'
 import { truncateAfterLastDash } from '@utils/convert'
 import React from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { motion } from 'framer-motion'
 
 type PostsListItemProps = {
   post: Post
@@ -74,19 +75,25 @@ const PostsListItemTag = ({ post }) => {
 }
 const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
   return (
-    <Box padding="8px" borderRadius={'4px'} borderBottomColor={'rgba(43,46,57,1.00)'} borderBottomWidth="1px">
-      <SafeLink href={`/${boardSlug}/${post?.postId}/${truncateAfterLastDash(post?.slug)}`}>
-        <Flex justifyContent={'space-between'}>
-          <Flex flexDirection={'column'} height={'72px'}>
-            <PostsListItemTitle post={post} />
-            <PostsListItemContent post={post} />
+    <motion.div
+      initial={{ opacity: 0, filter: 'blur(10px)' }} // Initial state
+      animate={{ opacity: 1, filter: 'blur(0px)' }} // Final state
+      transition={{ duration: 1 }} // Animation duration
+    >
+      <Box padding="8px" borderRadius={'4px'} borderBottomColor={'rgba(43,46,57,1.00)'} borderBottomWidth="1px">
+        <SafeLink href={`/${boardSlug}/${post?.postId}/${truncateAfterLastDash(post?.slug)}`}>
+          <Flex justifyContent={'space-between'}>
+            <Flex flexDirection={'column'} height={'72px'}>
+              <PostsListItemTitle post={post} />
+              <PostsListItemContent post={post} />
+            </Flex>
+            <PostsListItemImage post={post} />
           </Flex>
-          <PostsListItemImage post={post} />
-        </Flex>
-        <PostsListItemFooter post={post} />
-        <PostsListItemTag post={post} />
-      </SafeLink>
-    </Box>
+          <PostsListItemFooter post={post} />
+          <PostsListItemTag post={post} />
+        </SafeLink>
+      </Box>
+    </motion.div>
   )
 }
 export default React.memo(postsListItem)

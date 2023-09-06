@@ -3,7 +3,7 @@ import PostsListItem from '@views/board/postsListItem'
 import useInfiniteScrollPosts from '@hooks/queries/post/useInfiniteScrollPosts'
 import { useEffect, useMemo } from 'react'
 import PostsListItemSkeleton from './postsListItem/PostsListItemSkeleton'
-
+import EmptyPost from './postsListItem/EmptyPost'
 const Board = ({ boardId }) => {
   const {
     data: postsData,
@@ -43,8 +43,10 @@ const Board = ({ boardId }) => {
     <Flex flexDirection="column" gap="8px" padding="1rem">
       <Heading color={'red.500'}>{boardSlug}</Heading>
       {allPosts?.map((post) => (
-        <PostsListItem key={post.postId} post={post} boardSlug={boardSlug as string} />
+        <PostsListItem key={post?.postId} post={post} boardSlug={boardSlug as string} />
       ))}
+      {allPosts?.length === 0 && <EmptyPost />}
+
       {isFetchingNextPage &&
         Array.from({ length: 5 }, (v, i) => <PostsListItemSkeleton key={`skelton-posts-list-item-${i}`} />)}
       <Box ref={ref as any} />

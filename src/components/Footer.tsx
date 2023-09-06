@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core'
+import { Box, Text, Flex } from '@chakra-ui/core'
 
 import { FOOTER_HEIGHT } from 'config/constants/default'
 
