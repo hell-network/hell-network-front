@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Input, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react'
+import { useSearchPosts } from '@hooks/queries/post/useSearchPosts'
 
 const SearchModal = ({ isOpen, onOpen, onClose }) => {
   const [searchTerm, setSearchTerm] = useState('')
+  const { data } = useSearchPosts(searchTerm)
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
