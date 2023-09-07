@@ -4,19 +4,21 @@ import dynamic from 'next/dynamic'
 import { popo } from '../data'
 
 import { useGetPostsById } from '@hooks/queries/post/useGetPostById'
+import PostViewSkeleton from './PostViewSkeleton'
 const TuiViewer = dynamic(() => import('@components/TuiViewer'), {
-  loading: () => <p>Loading...</p>, // Component to render while loading
+  loading: () => <PostViewSkeleton />, // Component to render while loading
   ssr: false, // Disable server-side rendering
 })
 
 type PostViewProps = {
   id: string
 }
+
 const PostView = ({ id }: PostViewProps) => {
   const { data: postData, isLoading } = useGetPostsById(parseInt(id))
   return (
     <Box>
-      <Heading textAlign={'center'} fontFamily="Nanum Myeongjo" padding={'10px'} color="red.800">
+      <Heading textAlign={'center'} fontFamily="Nanum Myeongjo" padding={'10px'} color="red.600">
         {postData?.result?.title}
       </Heading>
       <Box width={'100%'} height="300px" position={'relative'}>

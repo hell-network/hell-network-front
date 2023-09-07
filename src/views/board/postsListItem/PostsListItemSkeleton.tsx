@@ -1,7 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 
 const PostsListSkeleton = () => {
   return (
