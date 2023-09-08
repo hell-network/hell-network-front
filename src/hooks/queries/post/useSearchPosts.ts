@@ -11,9 +11,6 @@ export function useSearchPosts(
   options?: UseQueryOptions<GetPostsResponse, AxiosError>,
 ) {
   const queryKey = queryKeys.searchPosts(searchString)
-  if (!searchString) {
-    return { data: null, isLoading: false }
-  }
 
   return useQuery(queryKey, () => searchPosts(searchString), options)
 }
