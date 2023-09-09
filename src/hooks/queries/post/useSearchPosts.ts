@@ -6,8 +6,8 @@ import { GetPostsResponse } from '@api/post/types'
 
 export function useSearchPosts(
   searchString: string,
-  take?: string,
-  skip?: string,
+  page?: string,
+  pageSize?: string,
   options?: UseQueryOptions<GetPostsResponse, AxiosError>,
 ) {
   const queryKey = queryKeys.searchPosts(searchString)

@@ -8,11 +8,15 @@ export type GetPostByIdResponse = Omit<IDefaultResponse, 'result'> & {
 export type GetPostsResponse = Omit<IDefaultResponse, 'result'> & {
   result: {
     posts: Post[]
-    lastId: number
-    isLast: boolean
+    lastId?: number
+    isLast?: boolean
   }
 }
 
+export type Tag = {
+  tagId: string
+  name: string
+}
 export interface Post {
   postId: number
   slug: string
@@ -25,4 +29,5 @@ export interface Post {
   views: number
   imageUrl: any
   likeCount: any
+  tags?: Tag[]
 }

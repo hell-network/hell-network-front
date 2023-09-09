@@ -1,9 +1,12 @@
+import { Box, keyframes, chakra, HTMLChakraProps } from '@chakra-ui/react'
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
 
-interface LoadingSpinnerProps {
+interface LoadingSpinnerOwnProps {
   size?: number
+  animationDelay?: string
 }
+
+type LoadingSpinnerProps = LoadingSpinnerOwnProps & HTMLChakraProps<'div'>
 
 const spinAnimation = keyframes`
   0% {
@@ -14,45 +17,29 @@ const spinAnimation = keyframes`
   }
 `
 
-const SpinnerContainer = styled.div<LoadingSpinnerProps>`
-  display: inline-block;
-  position: relative;
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-`
+const SpinnerItem = ({ size, ...rest }: LoadingSpinnerProps) => (
+  <Box
+    boxSizing="border-box"
+    display="block"
+    position="absolute"
+    width={`${size ? size - 16 : 64}px`} // default to 64px if size is not provided
+    height={`${size ? size - 16 : 64}px`} // same as above
+    margin="4px"
+    border="4px solid #fff"
+    borderColor="hsla(0, 0%, 62%, 1) transparent transparent transparent"
+    borderRadius="50%"
+    animation={`${spinAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`}
+    {...rest}
+  />
+)
 
-const SpinnerItem = styled.div<LoadingSpinnerProps>`
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: ${(props) => props.size - 16}px;
-  height: ${(props) => props.size - 16}px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: ${spinAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: hsla(0, 0%, 62%, 1) transparent transparent transparent;
-
-  &:nth-child(1) {
-    animation-delay: -0.45s;
-  }
-
-  &:nth-child(2) {
-    animation-delay: -0.3s;
-  }
-
-  &:nth-child(3) {
-    animation-delay: -0.15s;
-  }
-`
-
-const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ size = 80 }) => {
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ size = 80, ...props }) => {
   return (
-    <SpinnerContainer size={size}>
-      <SpinnerItem size={size} />
-      <SpinnerItem size={size} />
-      <SpinnerItem size={size} />
-    </SpinnerContainer>
+    <Box position="relative" width={`${size}px`} height={`${size}px`} {...props}>
+      <SpinnerItem size={size} animationDelay="-0.45s" />
+      <SpinnerItem size={size} animationDelay="-0.3s" />
+      <SpinnerItem size={size} animationDelay="-0.15s" />
+    </Box>
   )
 }
 

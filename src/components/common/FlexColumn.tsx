@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 
-const FlexCenter = ({ children, ...rest }) => {
+const FlexColumn = ({ children, ...rest }) => {
   return (
     <Flex flexDirection={'column'} {...rest}>
       {children}
@@ -8,4 +8,4 @@ const FlexCenter = ({ children, ...rest }) => {
   )
 }
 
-export default FlexCenter
+export default FlexColumn
