@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Text } from '@chakra-ui/react'
+import { Button, HStack } from '@chakra-ui/react'
 import { DEFAULT_PAGE_SIZE } from '@constants/index'
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useCallback } from 'react'
@@ -8,7 +8,7 @@ type PaginationProps = {
   onPageChange: (current: number) => void
   pageSize: number
 }
-const Pagination = ({ totalCount, current, onPageChange, pageSize = DEFAULT_PAGE_SIZE }: PaginationProps) => {
+const Pagination = ({ totalCount, current = 1, onPageChange, pageSize = DEFAULT_PAGE_SIZE }: PaginationProps) => {
   if (!totalCount) return <></>
   const range = (start: number, end: number) => {
     return [...Array(end - start + 1)].map((_, i) => i + start)

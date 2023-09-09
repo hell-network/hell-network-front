@@ -5,6 +5,7 @@ import { useEffect, useMemo } from 'react'
 import PostsListItemSkeleton from './postsListItem/PostsListItemSkeleton'
 import EmptyPost from './postsListItem/EmptyPost'
 import { FlexColumn } from '@components/common'
+import { useRouter } from 'next/router'
 
 const Board = ({ boardId }) => {
   const {
@@ -15,8 +16,9 @@ const Board = ({ boardId }) => {
     isFetchingNextPage,
     ref,
     entry,
-    boardSlug,
   } = useInfiniteScrollPosts(boardId)
+  const router = useRouter()
+  const { board: boardSlug } = router.query
 
   useEffect(() => {
     if (entry?.isIntersecting && hasNextPage && !isLoading) {

@@ -12,6 +12,7 @@ import PostsListItemImage from './PostsListItemImage'
 import PostsListItemFooter from './PostsListItemFooter'
 import PostsListItemTag from './PostsListItemTag'
 import { FlexColumn } from '@components/common'
+import useGetFindBoard from '@hooks/useGetFindBoard'
 
 type PostsListItemProps = {
   post: Post
@@ -21,6 +22,7 @@ const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
   const [ref, entry] = useIntersectionObserver({
     threshold: 0.1,
   })
+  const board = useGetFindBoard(post?.boardId)
   const [animationEnabled, setAnimationEnabled] = useState(true) // State to control animation
 
   const animationVariants = {
@@ -45,7 +47,7 @@ const postsListItem = ({ post, boardSlug }: PostsListItemProps) => {
       transition={{ duration: 1 }}
     >
       <Box padding="8px" borderRadius={'4px'} borderBottomColor={'rgba(43,46,57,1.00)'} borderBottomWidth="1px">
-        <SafeLink href={`/${boardSlug}/${post?.postId}/${truncateAfterLastDash(post?.slug)}`}>
+        <SafeLink href={`/${boardSlug ? boardSlug : board?.slug}/${post?.postId}/${truncateAfterLastDash(post?.slug)}`}>
           <Flex justifyContent={'space-between'}>
             <FlexColumn flexDirection={'column'} height={'72px'}>
               <PostsListItemTitle post={post} />

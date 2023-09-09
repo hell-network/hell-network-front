@@ -24,8 +24,8 @@ const Search = () => {
   )
 
   useEffect(() => {
-    if (!page) return
-    setCurrentPage(parseInt(page as string))
+    const pageParam = page ? page : '1'
+    setCurrentPage(parseInt(pageParam as string))
   }, [page])
 
   useEffect(() => {

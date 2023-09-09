@@ -2,7 +2,7 @@ import { Box, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon, SearchIcon } from '@chakra-ui/icons'
 import { useIsMenuOpen } from '@store/navi/hooks'
 import SafeLink from '@components/SafeLink'
-import SearchModal from './SearchModal'
+import SearchModal from '@components/modal/searchModal'
 
 const AppBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

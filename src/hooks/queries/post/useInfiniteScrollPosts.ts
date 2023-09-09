@@ -1,12 +1,8 @@
 import { useInfiniteQuery } from 'react-query'
-import { useRouter } from 'next/router'
 import useIntersectionObserver from '@hooks/useIntersectionObserver'
 import { getPosts } from '@api/post'
 
 function useInfiniteScrollPosts(boardId) {
-  const router = useRouter()
-  const { board: boardSlug } = router.query
-
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery(
     ['posts', boardId],
     ({ pageParam }) => {
@@ -33,7 +29,6 @@ function useInfiniteScrollPosts(boardId) {
     isFetchingNextPage,
     ref,
     entry,
-    boardSlug,
   }
 }
 
