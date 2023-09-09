@@ -10,7 +10,7 @@ export function useSearchPosts(
   pageSize?: string,
   options?: UseQueryOptions<GetPostsResponse, AxiosError>,
 ) {
-  const queryKey = queryKeys.searchPosts(searchString)
+  const queryKey = queryKeys.searchPosts(searchString, page, pageSize)
 
-  return useQuery(queryKey, () => searchPosts(searchString), options)
+  return useQuery(queryKey, () => searchPosts(searchString, page, pageSize), options)
 }

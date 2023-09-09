@@ -10,6 +10,7 @@ export type GetPostsResponse = Omit<IDefaultResponse, 'result'> & {
     posts: Post[]
     lastId?: number
     isLast?: boolean
+    totalCount?: number
   }
 }
 

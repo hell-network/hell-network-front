@@ -28,9 +28,9 @@ export const getPostById = async (id: number) => {
   return response.data // 데이터 값을 바로 반환하도록 처리합니다.
 }
 
-export const searchPosts = async (searchString: string, take?: string, skip?: string) => {
+export const searchPosts = async (searchString: string, page?: string, pageSize?: string) => {
   const response = await axiosInstance.get<GetPostsResponse>('/v1/post/searchPosts', {
-    params: { searchString, take, skip },
+    params: { searchString, page, pageSize },
   })
   return response.data // 데이터 값을 바로 반환하도록 처리합니다.
 }
