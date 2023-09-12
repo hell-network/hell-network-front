@@ -12,6 +12,11 @@
 }
 
 @font-face {
+  font-family: 'Miraero';
+  src: url('/fonts/MiraeroNormal.ttf');
+}
+
+@font-face {
   font-family: 'NanumMyeongjo';
   src: url('/fonts/NanumMyeongjo.ttf');
 }

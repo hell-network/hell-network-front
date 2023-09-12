@@ -6,6 +6,7 @@ import useComponentSize from '@hooks/useComponentSize'
 import ContentsSliderItem from './ContentsSliderItem'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { useGetPosts } from '@hooks/queries/post/useGetPosts'
 
 // type MainSliderProps = {
 //   postsList?: Posts[];
@@ -50,11 +51,13 @@ const postsList = [
     desc: '',
   },
 ]
-function MainSlider({ title }) {
+function ContentsSlider({ title, boardId, pageCount = 10 }) {
+  const { data, isLoading } = useGetPosts(null, boardId, pageCount)
   const slider1 = useRef<Slider>(null)
   const settings = useMemo<Settings>(
     () => ({
-      dots: true,
+      dots: false,
+      arrows: false,
       infinite: true,
       speed: 300,
       autoplay: false,
@@ -73,16 +76,16 @@ function MainSlider({ title }) {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: 2,
+            slidesToScroll: 2,
             initialSlide: 2,
           },
         },
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
+            slidesToShow: 1,
+            slidesToScroll: 1,
             initialSlide: 1,
           },
         },
@@ -109,4 +112,4 @@ function MainSlider({ title }) {
   )
 }
 
-export default MainSlider
+export default ContentsSlider

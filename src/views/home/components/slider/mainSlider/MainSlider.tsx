@@ -5,6 +5,7 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import useComponentSize from '@hooks/useComponentSize'
 import SliderItem from './SliderItem'
 import { motion } from 'framer-motion'
+import { Post } from '@api/post/types'
 
 // type MainSliderProps = {
 //   postsList?: Posts[];
@@ -24,7 +25,12 @@ const postsList = [
     desc: '',
   },
 ]
-function MainSlider() {
+
+type MainSliderProps = {
+  posts: Post[]
+}
+
+function MainSlider({ posts }: MainSliderProps) {
   const [width_, setWidth] = useState(0)
   const [opacity, setOpacity] = useState(0)
   const [isShow, setIsShow] = useState(true)
@@ -77,24 +83,25 @@ function MainSlider() {
     [],
   )
 
-  const { left, right } = pageInfo
+  const { left, right, current } = pageInfo
 
+  console.log('left ', left, ' right ', right, 'current ', current)
   const textBoxWidth = 350
+
   const { componentRef, componentSize } = useComponentSize()
-  if (!postsList) {
+  if (!posts) {
     return <div></div>
   }
 
-  console.log('=componentSize?.width - textBoxWidth) / 2', (componentSize?.width - textBoxWidth) / 2)
   return (
     <Box width={'100%'} position={'relative'}>
       <Flex justifyContent={'left'}>
-        <Text>최근 게시글</Text>
+        <Text padding={'5px'}>최근 게시글</Text>
       </Flex>
       <Box ref={componentRef} width={'100%'} height={'100%'}>
         <Slider {...settings} ref={slider1}>
-          {postsList?.map((item, idx) => {
-            return <SliderItem item={item} key={idx} />
+          {posts?.map((post, idx) => {
+            return <SliderItem post={post} key={`main-slider-${idx}`} />
           })}
         </Slider>
       </Box>
@@ -105,12 +112,11 @@ function MainSlider() {
         padding={'15px'}
         left={`${(componentSize?.width - textBoxWidth) / 2}px`}
         width={textBoxWidth}
+        maxHeight={'130px'}
+        isTruncated
         boxShadow={'dark-lg'}
       >
-        <Text color={'white'}>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam ...
-        </Text>
+        {posts[current]?.content}
       </Box>
     </Box>
   )

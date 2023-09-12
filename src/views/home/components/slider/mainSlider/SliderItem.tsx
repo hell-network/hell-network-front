@@ -1,6 +1,10 @@
+import { Post } from '@api/post/types'
 import { Box, Flex, Text } from '@chakra-ui/react'
 
-const SliderItem = ({ item }) => {
+type SliderItemProps = {
+  post: Post
+}
+const SliderItem = ({ post }: SliderItemProps) => {
   return (
     <Flex flexDirection={'column'}>
       <Flex width={'100%'} height="254px" position={'relative'} justifyContent={'center'} alignItems={'center'}>
@@ -10,7 +14,7 @@ const SliderItem = ({ item }) => {
           style={{ top: '0', width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', zIndex: -1 }}
         />
         <Box background={'black'} padding="10px" boxShadow={'dark-lg'}>
-          <Text color={'whitesmoke'}>{'어느날의 지옥'}</Text>
+          <Text color={'whitesmoke'}>{post?.title}</Text>
         </Box>
       </Flex>
     </Flex>

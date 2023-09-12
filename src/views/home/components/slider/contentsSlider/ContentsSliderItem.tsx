@@ -1,10 +1,11 @@
 import { Box, Container, Flex, Text } from '@chakra-ui/react'
+import { FlexCenter, FlexColumn } from '@components/common'
 import Image from 'next/image'
 
 const ContentSliderItem = ({ item }) => {
   return (
     <Box margin="10px" position={'relative'} boxShadow={'base'}>
-      <Flex
+      <FlexCenter
         width={'100%'}
         height="140px"
         position={'relative'}
@@ -17,10 +18,16 @@ const ContentSliderItem = ({ item }) => {
           alt=""
           style={{ top: '0', width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', zIndex: -1 }}
         />
-        <Box background={'black'} padding="10px" boxShadow={'dark-lg'}>
+        {/* <Box background={'black'} padding="10px" boxShadow={'dark-lg'}>
+          <Text color={'whitesmoke'}>{'타이틀'}</Text>
+        </Box> */}
+      </FlexCenter>
+      <FlexColumn>
+        <Box background={'black'} padding="" boxShadow={'dark-lg'}>
           <Text color={'whitesmoke'}>{'타이틀'}</Text>
         </Box>
-      </Flex>
+        <Text fontSize={'small'}>디스크립션</Text>
+      </FlexColumn>
     </Box>
   )
 }

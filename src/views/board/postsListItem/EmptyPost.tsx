@@ -26,8 +26,8 @@ const EmptyPost = () => {
       animate={animationOn ? { opacity: 1, filter: 'blur(0px)' } : {}} // Final state when animationOn is true
       transition={{ duration: 2 }} // Animation duration
     >
-      <Text fontFamily={'Helpme'} fontSize="72px" color={'red.700'}>
-        is Empty
+      <Text fontFamily={'Miraero'} fontSize="48px" color={'#a70000'}>
+        여기엔 아무것도 없다.
       </Text>
     </motion.div>
   )

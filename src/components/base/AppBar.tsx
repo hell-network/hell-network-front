@@ -50,7 +50,7 @@ const AppBar = () => {
                     />
                   </SafeLink>
                   <Text fontWeight={'bold'} fontSize={'16px'} lineHeight={'24px'}>
-                    Hell.net
+                    저승넷
                   </Text>
                 </Flex>
                 <Flex
