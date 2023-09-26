@@ -10,7 +10,7 @@ const AppBar = () => {
 
   return (
     <>
-      <SearchModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      {/* <SearchModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} /> */}
       <Box
         as="section"
         width="100%"

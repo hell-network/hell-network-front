@@ -7,7 +7,7 @@ import PostsListSkeleton from '@views/board/postsListItem/PostsListItemSkeleton'
 import EmptyPost from '@views/board/postsListItem/EmptyPost'
 import Pagination from '@views/search/Pagination'
 import { FlexColumn } from '@components/common'
-import { DEFAULT_PAGE_SIZE } from '@constants/index'
+import { DEFAULT_PAGE_SIZE } from '@constants/default'
 
 const Search = () => {
   const router = useRouter()
@@ -57,7 +57,7 @@ const Search = () => {
           return <PostsListItem post={post} />
         })}
         <Pagination
-          totalCount={searchPostsData?.result?.totalCount}
+          totalCount={searchPostsData?.result?.totalCount as number}
           current={currentPage}
           onPageChange={handlePageChange}
           pageSize={DEFAULT_PAGE_SIZE}

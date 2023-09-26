@@ -1,11 +1,11 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons'
 import { useBoard, useIsMenuOpen } from '@store/navi/hooks'
-import { useGetBoard } from '@hooks/queries/board/useGetBoard'
+import { useGetBoard } from '@api/board'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import SafeLink from '@components/SafeLink'
-import { Board } from '@api/board/types'
+import { Board } from 'types/board'
 import useGetBoardId from '@hooks/useGetBoardId'
 
 type SidebarItemProps = {
@@ -41,7 +41,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (boardData?.result?.length === 0) return
-    handleSetBoard(boardData?.result)
+    handleSetBoard(boardData?.result as Board[])
   }, [boardData, handleSetBoard])
 
   useEffect(() => {

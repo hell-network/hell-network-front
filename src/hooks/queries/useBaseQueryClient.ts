@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { QueryClient } from 'react-query'
+import { QueryClient } from '@tanstack/react-query'
 
 type QueryClientState = QueryClient
 

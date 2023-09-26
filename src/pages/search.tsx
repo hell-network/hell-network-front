@@ -1,7 +1,7 @@
-import Search from '@views/search'
+// import Search from '@views/search'
 
 const SearchPage = () => {
-  return <Search />
+  return <div />
 }
 
 export default SearchPage

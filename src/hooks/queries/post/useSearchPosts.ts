@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { useQuery, UseQueryOptions } from 'react-query'
-import { queryKeys } from 'config/constants/queryKeys'
+import { queryKeys } from '@constants/queryKeys'
 import { searchPosts } from '@api/post'
 import { GetPostsResponse } from '@api/post/types'
 
